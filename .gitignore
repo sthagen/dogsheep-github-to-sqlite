@@ -1,4 +1,5 @@
 *.db
+uv.lock
 .DS_Store
 .venv
 __pycache__/
@@ -10,3 +11,4 @@ venv
 *.egg-info
 .coverage
 build/
+dist/

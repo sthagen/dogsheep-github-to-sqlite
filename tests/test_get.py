@@ -27,8 +27,7 @@ def test_get(mocked_paginated, url):
     with runner.isolated_filesystem():
         result = runner.invoke(cli.cli, ["get", url])
         assert 0 == result.exit_code
-        expected = textwrap.dedent(
-            """
+        expected = textwrap.dedent("""
         [
             {
                 "id": 1,
@@ -39,8 +38,7 @@ def test_get(mocked_paginated, url):
                 "title": "Item 2"
             }
         ]
-        """
-        ).strip()
+        """).strip()
         assert result.output.strip() == expected
 
 
@@ -50,14 +48,12 @@ def test_get(mocked_paginated, url):
         (True, '{"id": 1, "title": "Item 1"}'),
         (
             False,
-            textwrap.dedent(
-                """
+            textwrap.dedent("""
                 {
                     "id": 1,
                     "title": "Item 1"
                 }
-            """
-            ),
+            """),
         ),
     ],
 )
@@ -80,8 +76,7 @@ def test_get_single(mocked_paginated, nl, expected, paginate):
     (
         (
             False,
-            textwrap.dedent(
-                """
+            textwrap.dedent("""
             [
                 {
                     "id": 1,
@@ -99,19 +94,16 @@ def test_get_single(mocked_paginated, nl, expected, paginate):
                     "id": 4,
                     "title": "Item 4"
                 }
-            ]"""
-            ).strip(),
+            ]""").strip(),
         ),
         (
             True,
-            textwrap.dedent(
-                """
+            textwrap.dedent("""
             {"id": 1, "title": "Item 1"}
             {"id": 2, "title": "Item 2"}
             {"id": 3, "title": "Item 3"}
             {"id": 4, "title": "Item 4"}
-            """
-            ).strip(),
+            """).strip(),
         ),
     ),
 )

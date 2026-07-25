@@ -229,11 +229,11 @@ def save_pull_requests(db, pull_requests, repo):
 
 
 def save_user(db, user):
-    # Under some conditions, GitHub caches removed repositories with  
+    # Under some conditions, GitHub caches removed repositories with
     # stars and ends up leaving dangling `None` user references.
     if user is None:
         return None
-    
+
     # Remove all url fields except avatar_url and html_url
     to_save = {
         key: value
@@ -461,7 +461,9 @@ def fetch_stargazers(repo, token=None):
 
 
 def fetch_all_repos(username=None, token=None, org=None):
-    assert username or token or org, "Must provide username= or token= or org= or a combination"
+    assert (
+        username or token or org
+    ), "Must provide username= or token= or org= or a combination"
     headers = make_headers(token)
     # Get topics for each repo:
     headers["Accept"] = "application/vnd.github.mercy-preview+json"

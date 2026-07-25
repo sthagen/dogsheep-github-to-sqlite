@@ -31,8 +31,7 @@ def test_replaces_existing_workflows(db, repo):
         db,
         repo["id"],
         "deploy_demo.yml",
-        textwrap.dedent(
-            """
+        textwrap.dedent("""
     name: Build and deploy demo replaced
 
     on:
@@ -44,8 +43,7 @@ def test_replaces_existing_workflows(db, repo):
         steps:
         - uses: actions/checkout@v2
           name: Check out repo
-    """
-        ),
+    """),
     )
     workflows = list(db["workflows"].rows)
     jobs = list(db["jobs"].rows)
