@@ -697,7 +697,10 @@ def ensure_foreign_keys(db):
     for expected_foreign_key in FOREIGN_KEYS:
         table, column, table2, column2 = expected_foreign_key
         if (
-            expected_foreign_key not in db[table].foreign_keys
+            expected_foreign_key not in {
+                (fk.table, fk.column, fk.other_table, fk.other_column)
+                for fk in db[table].foreign_keys
+            }
             and
             # Ensure all tables and columns exist
             db[table].exists()
